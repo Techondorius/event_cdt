@@ -21,8 +21,6 @@ jobs:
           uses: azure/container-apps-deploy-action@v0
           with:
             appSourcePath: ${{ github.workspace }}/frontend
-            acrName: ectdFrontend
-            containerAppName: ectd-frontend
-            resourceGroup: ectd
-            acrUsername: ${{ secrets.AZURE_REGISTRY_USERNAME }}
-            acrPassword: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+            acrName: ca05ad496e72acr
+            containerAppName: frontend
+            resourceGroup: ecdt
