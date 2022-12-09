@@ -24,3 +24,5 @@ jobs:
             acrName: ectdFrontend
             containerAppName: ectd-frontend
             resourceGroup: ectd
+            acrUsername: ${{ secrets.AZURE_REGISTRY_USERNAME }}
+            acrPassword: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
