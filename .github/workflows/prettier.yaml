@@ -1,0 +1,27 @@
+name: Prettier
+
+on:
+  pull_request:
+    paths:
+      - frontend/**
+    branches:
+      - main
+    types: [opened, synchronize]
+
+jobs:
+  lint:
+    defaults:
+      run:
+        working-directory: frontend/
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 18
+
+      - name: Run Prettier
+        run: |
+          npx prettier --check ./src
