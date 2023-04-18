@@ -1,5 +1,12 @@
+import Event from "@/components/event"
+
 const Index = () => {
-  return <h1>Home</h1>
+  return (
+    <div >
+      <h1>asdf</h1>
+      <Event date="asdf" title="aasdf"></Event>
+    </div>
+  )
 }
 
 export default Index
