@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useReducer } from "react"
 import style from "@/styles/event.module.css"
 
 interface EventProps {
@@ -9,11 +9,14 @@ interface EventProps {
 const Event = (props: EventProps) => {
   const { date, title } = props
   const targetTime = new Date(date)
+
   console.log(targetTime)
-  const [days, setDays] = useState("00")
-  const [hours, setHours] = useState("00")
-  const [minutes, setMinutes] = useState("00")
-  const [seconds, setSeconds] = useState("00")
+  const [timeDiff, setTimeDiff] = useState({
+    days: "00",
+    hours: "00",
+    minutes: "00",
+    seconds: "00",
+  })
 
   // useEffectが完了するまでの待機フラグ
   const [wait, setWait] = useState(false)
@@ -22,26 +25,26 @@ const Event = (props: EventProps) => {
     const intervalId = setInterval(() => {
       const diffMs = targetTime.getTime() - Date.now()
 
-      setDays(String(Math.floor(diffMs / (1000 * 60 * 60 * 24))))
+      const diffDaysString = String(Math.floor(diffMs / (1000 * 60 * 60 * 24)))
 
-      // 日付が10未満の場合は先頭に0を追加
-      if (Math.floor((diffMs / (1000 * 60 * 60)) % 24) < 10) {
-        setHours("0" + String(Math.floor((diffMs / (1000 * 60 * 60)) % 24)))
-      } else {
-        setHours(String(Math.floor((diffMs / (1000 * 60 * 60)) % 24)))
-      }
+      const diffHours = Math.floor((diffMs / (1000 * 60 * 60)) % 24)
+      const diffHoursString = (diffHours < 10 ? "0" : "") + String(diffHours)
 
-      if (Math.floor((diffMs / (1000 * 60)) % 60) < 10) {
-        setMinutes("0" + String(Math.floor((diffMs / (1000 * 60)) % 60)))
-      } else {
-        setMinutes(String(Math.floor((diffMs / (1000 * 60)) % 60)))
-      }
+      const diffMinutes = Math.floor((diffMs / (1000 * 60)) % 60)
+      const diffMinutesString =
+        (diffMinutes < 10 ? "0" : "") + String(diffMinutes)
 
-      if (Math.floor((diffMs / 1000) % 60) < 10) {
-        setSeconds("0" + String(Math.floor((diffMs / 1000) % 60)))
-      } else {
-        setSeconds(String(Math.floor((diffMs / 1000) % 60)))
-      }
+      const diffSeconds = Math.floor((diffMs / 1000) % 60)
+      const diffSecondsString =
+        (diffSeconds < 10 ? "0" : "") + String(diffSeconds)
+
+      setTimeDiff({
+        days: diffDaysString,
+        hours: diffHoursString,
+        minutes: diffMinutesString,
+        seconds: diffSecondsString,
+      })
+
       setWait(true)
     })
 
@@ -56,7 +59,8 @@ const Event = (props: EventProps) => {
         <div className={style.event}>
           <h1>{title}</h1>
           <h2>
-            {days} and {hours}:{minutes}:{seconds}
+            {timeDiff.days} and {timeDiff.hours}:{timeDiff.minutes}:
+            {timeDiff.seconds}
           </h2>
         </div>
       )}
