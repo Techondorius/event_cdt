@@ -1,17 +1,21 @@
 import { useState, useEffect } from "react"
+import style from "@/styles/event.module.css"
 
 interface EventProps {
   date: string
   title: string
 }
 
-const Event: React.FC<EventProps> = ({ title }) => {
-  const targetTime = new Date(2024, 9, 9, 9, 9, 9, 9)
-
+const Event = (props: EventProps) => {
+  const { date, title } = props
+  const targetTime = new Date(date)
+  console.log(targetTime)
   const [days, setDays] = useState("00")
   const [hours, setHours] = useState("00")
   const [minutes, setMinutes] = useState("00")
   const [seconds, setSeconds] = useState("00")
+
+  // useEffectが完了するまでの待機フラグ
   const [wait, setWait] = useState(false)
 
   useEffect(() => {
@@ -39,7 +43,7 @@ const Event: React.FC<EventProps> = ({ title }) => {
         setSeconds(String(Math.floor((diffMs / 1000) % 60)))
       }
       setWait(true)
-    }, 1000)
+    })
 
     return () => {
       clearInterval(intervalId)
@@ -47,14 +51,16 @@ const Event: React.FC<EventProps> = ({ title }) => {
   })
 
   return (
-    <div>
-      <h1>{title}</h1>
+    <>
       {wait && (
-        <h2>
-          {days} and {hours}:{minutes}:{seconds}
-        </h2>
+        <div className={style.event}>
+          <h1>{title}</h1>
+          <h2>
+            {days} and {hours}:{minutes}:{seconds}
+          </h2>
+        </div>
       )}
-    </div>
+    </>
   )
 }
 

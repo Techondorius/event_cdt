@@ -1,10 +1,8 @@
-import Event from "@/components/event"
-
+import Event from "@/components/Event"
 const Index = () => {
   return (
-    <div >
-      <h1>asdf</h1>
-      <Event date="asdf" title="aasdf"></Event>
+    <div>
+      <Event date={'2023-04-20T19:56:56'} title="金金金金金金金金金金金"></Event>
     </div>
   )
 }
