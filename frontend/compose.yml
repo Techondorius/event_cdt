@@ -1,11 +1,15 @@
-version: '3'
+version: "3"
 services:
   frontend:
-    build: 
+    build:
       context: .
       dockerfile: Dockerfile
     ports:
       - 3000:3000
+      - 24678:24678
     volumes:
       - .:/src
-    command: sh -c "yarn run dev"
+    command: sh -c "yarn install; yarn run dev"
+    environment:
+      - TZ=Asia/Tokyo
+      - CHOKIDAR_USEPOLLING=true
