@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from "react"
+import { useState, useEffect } from "react"
 import style from "@/styles/event.module.css"
 
 interface EventProps {
