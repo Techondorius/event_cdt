@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - .:/src
+    ports:
+      - 8000:8080
+    tty: true
