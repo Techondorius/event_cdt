@@ -28,5 +28,5 @@ jobs:
             cd /src && pip install pipenv &&
             pipenv install flake8 mypy &&
             . .venv/bin/activate &&
-            mypy --strict . &&
-            flake8 ."
+            mypy --strict src/ &&
+            flake8 src/"
