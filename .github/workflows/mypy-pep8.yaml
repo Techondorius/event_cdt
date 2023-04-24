@@ -18,15 +18,22 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Docker Compose up
-        run: |
-          docker compose -f "compose.lint.yml" up -d
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.10.4"
 
-      - name: Lint in docker compose
+      - name: Install pipenv
         run: |
-          docker compose -f "./compose.lint.yml" exec mypy sh -c "
-            cd /src && pip install pipenv &&
-            pipenv install &&
-            . .venv/bin/activate &&
-            mypy --strict src/ &&
-            flake8 src/"
+          pip install pipenv
+
+      - name: Install dependencies
+        run: |
+          pipenv install
+        
+      - name: Run mypy
+        run: |
+          pipenv run mypy --strict src/
+      
+      - name: Run flake8
+        run: |
+          pipenv run flake8 src/
