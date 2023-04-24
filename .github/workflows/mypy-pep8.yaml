@@ -29,6 +29,14 @@ jobs:
       - name: Install dependencies
         run: |
           pipenv install && pipenv install flake8
+
+      - name: pwd and ls
+        run: |
+          pwd && ls -la
+
+      - name: Activate pipenv
+        run: |
+          . $(pipenv --venv)/bin/activate
         
       - name: Run mypy
         run: |
