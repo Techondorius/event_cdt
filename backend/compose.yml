@@ -14,4 +14,4 @@ services:
       cd /src && pip install pipenv &&
       pipenv install &&
       . .venv/bin/activate &&
-      uvicorn main:app --reload --host 0.0.0.0"
+      uvicorn src.main:app --reload --host 0.0.0.0"
