@@ -4,5 +4,6 @@ install:
 run:
 	docker compose up -d --build
 
-typecheck:
-	pipenv run mypy .
+lintcheck:
+	pipenv run mypy --strict src/
+	pipenv run flake8 src/

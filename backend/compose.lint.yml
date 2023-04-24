@@ -8,5 +8,3 @@ services:
     volumes:
       - .:/src
     tty: true
-    ports:
-      - 8000:8000
