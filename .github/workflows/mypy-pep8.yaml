@@ -26,7 +26,7 @@ jobs:
         run: |
           docker compose -f "./compose.lint.yml" exec mypy sh -c "
             cd /src && pip install pipenv &&
-            pipenv install flake8 mypy &&
+            pipenv install &&
             . .venv/bin/activate &&
             mypy --strict src/ &&
             flake8 src/"
