@@ -4,7 +4,8 @@
 
 1. (推奨)環境変数に`PIPENV_VENV_IN_PROJECT=true`を設定する。
 2. `pip install pipenv`または`pip3 install pipenv`でpipenvをインストールする
-3. このディレクトリに移動して、`make install`または`pyenv install`を実行する
+
+このあと、絶対にホストから`pipenv install`などを実行しないでください。Dockerで実行環境が起動しなくなる場合があります
 
 # ローカルでの実行方法
 

@@ -10,8 +10,9 @@ services:
     tty: true
     ports:
       - 8000:8000
-    command: bash -c "
+    command: sh -c "
       cd /src && pip install pipenv &&
+      echo asdf &&
       pipenv install &&
       . .venv/bin/activate &&
-      uvicorn src.main:app --reload --host 0.0.0.0"
+      pipenv run uvicorn src.main:app --reload --host 0.0.0.0"
