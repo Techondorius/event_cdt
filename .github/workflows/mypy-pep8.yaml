@@ -18,18 +18,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
+      - name: Docker Compose up
+        run: |
+          docker compose -f "compose.lint.yml" up -d
 
-      - name: Install mypy
+      - name: Lint in docker compose
         run: |
-          pip install mypy flake8
-        
-      - name: Run mypy
-        run: |
-          mypy --strict .
-      
-      - name: Run flake8
-        run: |
-          flake8 .
+          docker compose -f "./compose.lint.yml" exec mypy sh -c "
+            cd /src && pip install pipenv &&
+            pipenv install flake8 mypy &&
+            . .venv/bin/activate &&
+            mypy --strict . &&
+            flake8 ."

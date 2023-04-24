@@ -1,4 +1,4 @@
-FROM python:3.10.4
+FROM python:3.10.4-alpine3.14
 WORKDIR /src
 COPY Pipfile .
 COPY Pipfile.lock .
