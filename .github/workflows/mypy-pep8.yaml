@@ -28,7 +28,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pepenv install && pipenv install flake8
+          pipenv install && pipenv install flake8
         
       - name: Run mypy
         run: |
