@@ -32,8 +32,8 @@ jobs:
         
       - name: Run mypy
         run: |
-          pipenv run mypy --strict src/
+          pipenv run mypy --strict api/
       
       - name: Run flake8
         run: |
-          pipenv run flake8 src/
+          pipenv run flake8 api/
