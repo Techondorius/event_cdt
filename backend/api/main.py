@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from controller.mock import app as routes
+from routes.mock import app as routes
 
 app = FastAPI()
 
