@@ -1,5 +1,5 @@
-FROM python:3.11-alpine3.17
-WORKDIR /src
+FROM python:3.11.3
+WORKDIR /backend
 COPY Pipfile .
 COPY Pipfile.lock .
-ENV PIPENV_VENV_IN_PROJECT=true
+RUN pip install pipenv
