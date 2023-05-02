@@ -1,6 +1,8 @@
 from fastapi import FastAPI
-from routes.mock import app as routes
 from fastapi.middleware.cors import CORSMiddleware
+from db import create_tables
+from routes.mock import app as mock_routes
+from routes.events import app as event_routes
 
 app = FastAPI()
 
@@ -22,4 +24,6 @@ def read_root() -> dict[str, str]:
     return {"Hello": "World"}
 
 
-app.include_router(routes)
+app.include_router(mock_routes)
+app.include_router(event_routes)
+create_tables()
