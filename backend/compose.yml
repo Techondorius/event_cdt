@@ -15,3 +15,13 @@ services:
       pipenv install &&
       cd api/ &&
       pipenv run uvicorn main:app --reload --host 0.0.0.0"
+    links:
+      - sql
+
+  sql:
+    image: mysql:8.0.19
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mypy
+      MYSQL_USER: mypy
+      MYSQL_PASSWORD: mypy
