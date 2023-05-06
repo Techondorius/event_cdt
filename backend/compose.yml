@@ -12,6 +12,7 @@ services:
       - 8000:8000
     environment:
       - DEV=true
+      - TZ=Europe/London
     working_dir: /src
     command: bash -c "
       pipenv install &&
@@ -27,3 +28,4 @@ services:
       MYSQL_DATABASE: mypy
       MYSQL_USER: mypy
       MYSQL_PASSWORD: mypy
+      TZ: Asia/Tokyo
