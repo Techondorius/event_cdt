@@ -6,5 +6,6 @@ app = APIRouter()
 
 @app.get("/mock", response_model=Single_Event)
 def mock() -> Single_Event:
-    res: Single_Event = Single_Event(id=1, title="ライブ", date="2023-10-10")
-    return res
+    return Single_Event(
+        id=8, name="ライブ", date="2023-10-10T23:45:00+09:00", deleted_at=None
+    )
