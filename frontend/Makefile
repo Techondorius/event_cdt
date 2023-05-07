@@ -1,5 +1,5 @@
 lint:
-	npx prettier --write ./src
+	docker compose exec frontend npx prettier --write ./app
 
 run:
 	docker compose up -d --build

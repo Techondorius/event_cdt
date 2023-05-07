@@ -1,10 +1,8 @@
 import Event from "@/components/Event"
-const Index = () => {
+export default function Home() {
   return (
     <div>
       <Event></Event>
     </div>
   )
 }
-
-export default Index

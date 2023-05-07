@@ -12,4 +12,4 @@ services:
     command: sh -c "yarn install; yarn run dev"
     environment:
       - TZ=Asia/Tokyo
-      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
