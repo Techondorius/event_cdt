@@ -1,8 +1,12 @@
-import { useState, useEffect } from "react"
-import style from "@/styles/event.module.css"
-import axios, { AxiosResponse } from "axios"
+"use client"
 
-const Event = () => {
+import { useEffect, useState } from "react"
+
+type props = {
+  date: string
+}
+
+const Timer = (props: props) => {
   const [timeDiff, setTimeDiff] = useState({
     days: "00",
     hours: "00",
@@ -10,34 +14,10 @@ const Event = () => {
     seconds: "00",
   })
 
-  interface res {
-    id: number
-    title: string
-    date: string
-  }
+  // console.log(props.date)
 
-  const defaultRes: res = {
-    id: 0,
-    title: "",
-    date: "",
-  }
-
-  const [data, setData] = useState<res>(defaultRes)
-
-  // useEffectが完了するまでの待機フラグ
-  const [wait, setWait] = useState(false)
-
-  useEffect(() => {
-    const apiRequest = async () => {
-      await axios
-        .get("http://localhost:8000/mock")
-        .then((res: AxiosResponse<res>) => {
-          setData(res.data)
-        })
-    }
-    apiRequest()
-  }, [])
-  const targetTime = new Date(data.date)
+  const targetTime = new Date(props.date)
+  // console.log(targetTime)
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -62,28 +42,17 @@ const Event = () => {
         minutes: diffMinutesString,
         seconds: diffSecondsString,
       })
-
-      setWait(true)
     }, 1000)
 
     return () => {
       clearInterval(intervalId)
     }
   })
-
   return (
-    <>
-      {wait && (
-        <div className={style.event}>
-          <h1>{data.title}</h1>
-          <h2>
-            {timeDiff.days} and {timeDiff.hours}:{timeDiff.minutes}:
-            {timeDiff.seconds}
-          </h2>
-        </div>
-      )}
-    </>
+    <h2 className="text-4xl">
+      {timeDiff.days} and {timeDiff.hours}:{timeDiff.minutes}:{timeDiff.seconds}
+    </h2>
   )
 }
 
-export default Event
+export default Timer
