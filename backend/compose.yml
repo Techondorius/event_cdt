@@ -1,22 +1,18 @@
 version: "3"
 
 services:
-  mypy:
+  gin-gonic:
     build:
       dockerfile: Dockerfile
       context: .
     volumes:
-      - .:/src
+      - ./:/src
     tty: true
     ports:
       - 8000:8000
     environment:
-      - DEV=true
+      TZ: Asia/Tokyo
     working_dir: /src
-    command: bash -c "
-      pipenv install &&
-      cd api/ &&
-      pipenv run uvicorn main:app --reload --host 0.0.0.0"
     links:
       - sql
 
@@ -27,3 +23,4 @@ services:
       MYSQL_DATABASE: mypy
       MYSQL_USER: mypy
       MYSQL_PASSWORD: mypy
+      TZ: Asia/Tokyo
