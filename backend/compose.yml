@@ -12,6 +12,10 @@ services:
       - 8000:8000
     environment:
       TZ: Asia/Tokyo
+      MYSQL_HOST: sql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE_NAME: mypy
     working_dir: /src
     links:
       - sql

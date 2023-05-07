@@ -1,8 +1,10 @@
 service = gin-gonic
 
+start:
+	docker compose up -d --build
+
 run:
-	docker compose up -d
-	docker compose logs -f $(service)
+	docker compose exec gin-gonic go run .
 
 tidy:
 	docker compose run $(service) go mod tidy
