@@ -2,4 +2,6 @@
 
 Goの開発環境が入っていてGOBINなどのパスが通っている前提
 
-`go install github.com/cosmtrek/air@latest`
+`go mod tidy`でginのlintなどが通るようになる
+
+`make run`でコンテナが起動する
