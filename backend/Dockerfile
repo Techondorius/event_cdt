@@ -1,5 +1,5 @@
-FROM python:3.11.3
-WORKDIR /backend
-COPY Pipfile .
-COPY Pipfile.lock .
-RUN pip install pipenv
+FROM golang:1.20.3-alpine
+WORKDIR /src
+COPY go.mod .
+RUN ls
+RUN go mod download
